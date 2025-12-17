@@ -23,6 +23,17 @@ void inserir_no(int chave, int ocorrencia){
 	lista = novo_no;
 }
 
+void liberar_MEM(){
+	No *atual = lista;
+	No *proximo;
+	while(atual != NULL){
+		proximo = atual->prox;
+		free(atual);
+		atual = proximo;
+	}
+	lista = NULL;
+}
+
 int main(){
 	int array_histograma[MAX_VALOR] = {0};
 	
@@ -57,11 +68,7 @@ int main(){
 	No *proximo;
 	
 	printf("Liberando memoria...\n");
-	while(atual != NULL){
-		proximo = atual->prox;
-		free(atual);
-		atual = proximo;
-	}
+	liberar_MEM();
 	
 	lista=NULL;
 	
